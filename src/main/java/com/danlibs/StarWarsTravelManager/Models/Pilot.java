@@ -2,11 +2,12 @@ package com.danlibs.StarWarsTravelManager.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sun.istack.NotNull;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "Pilots")
@@ -14,13 +15,13 @@ import javax.persistence.Table;
 public class Pilot {
     @Id
     private Integer idPilot;
-    @NotNull
     @JsonProperty("name")
     private String name;
-    @NotNull
     @JsonProperty("birth_year")
     private String birthYear;
-    @NotNull
+    @ElementCollection
+    @JsonProperty("starships")
+    private List<String> starships;
     private boolean isAway = false;
 
     public Integer getIdPilot() {
@@ -53,5 +54,13 @@ public class Pilot {
 
     public void setAway(boolean away) {
         isAway = away;
+    }
+
+    public List<String> getStarships() {
+        return starships;
+    }
+
+    public void setStarships(List<String> starships) {
+        this.starships = starships;
     }
 }

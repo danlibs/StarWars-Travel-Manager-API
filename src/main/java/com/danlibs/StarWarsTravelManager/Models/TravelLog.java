@@ -1,11 +1,9 @@
 package com.danlibs.StarWarsTravelManager.Models;
 
-import com.sun.istack.NotNull;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
 @Entity
@@ -13,8 +11,10 @@ public class TravelLog {
     @Id
     @GeneratedValue
     private Integer idTravelLog;
-    private Integer pilotId;
-    private Integer starshipId;
+    @ManyToOne
+    private Pilot pilot;
+    @ManyToOne
+    private Starship starship;
     private LocalDate arriveDate;
     private LocalDate travelDate;
 
@@ -26,20 +26,20 @@ public class TravelLog {
         this.idTravelLog = idTravelLog;
     }
 
-    public Integer getPilotId() {
-        return pilotId;
+    public Pilot getPilot() {
+        return pilot;
     }
 
-    public void setPilotId(Integer pilotId) {
-        this.pilotId = pilotId;
+    public void setPilot(Pilot pilotId) {
+        this.pilot = pilotId;
     }
 
-    public Integer getStarshipId() {
-        return starshipId;
+    public Starship getStarship() {
+        return starship;
     }
 
-    public void setStarshipId(Integer starshipId) {
-        this.starshipId = starshipId;
+    public void setStarship(Starship starshipId) {
+        this.starship = starshipId;
     }
 
     public LocalDate getArriveDate() {
